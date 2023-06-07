@@ -2,6 +2,8 @@ import React from 'react'
 import userOne from '../assets/userOne.png'
 import MainLogo from '../assets/MainLogo.png'
 import { NavLink, Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../ContextProvider/AuthProvider'
 
 const Navber = () => {
     const navLinkStyles = ({isActive}) => {
@@ -9,6 +11,19 @@ const Navber = () => {
            color: isActive ? '#fff' : '#73BBC9',
         //    backgroundColor : isActive ? 'black' : 'black'
         }
+      }
+
+      const {user, logOut} = useContext(AuthContext);
+
+      const signingOut = () =>{
+          logOut()
+          .then(()=>{
+            console.log("sign out successful")
+          })
+          .catch((error)=>{
+            console.log(error.message);
+          })
+    
       }
   return (
     <>
@@ -28,22 +43,22 @@ const Navber = () => {
             <NavLink style={navLinkStyles} to='/instructors'>Instructors</NavLink>
           </li>
        
-          {/* { user && <li>
+          { user && <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
           </li>
           }
       
          {user && <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/dashboard'>Dashboard</NavLink>
-          </li> } */}
+          </li> }
 
-          <li>
+          {/* <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
           </li>
 
           <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/dashboard'>Dashboard</NavLink>
-          </li>
+          </li> */}
 
       </ul>
     </div>
@@ -61,36 +76,37 @@ const Navber = () => {
         <li>
           <NavLink className='font-bold' style={navLinkStyles} to='/instructors'>Instructor</NavLink>
         </li>
-       {/* { user && <li>
-            <NavLink className='font-bold' style={navLinkStyles} to='/myToys'>My Toys</NavLink>
+       { user && <li>
+            <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
           </li>
        }
       
       {user && <li>
-            <NavLink className='font-bold' style={navLinkStyles} to='/addToys'>Add A Toy</NavLink>
-          </li> } */}
-           <li>
+            <NavLink className='font-bold' style={navLinkStyles} to='/dashboard'>Dashboard</NavLink>
+      </li> }
+
+           {/* <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
           </li>
 
           <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/dashboard'>Dashboard</NavLink>
-          </li>
+          </li> */}
     
     </ul>
   </div>
   <div className="navbar-end">
-    {/* {
+    {
             user ? <>
               <img className='me-6 user-img' title={user.displayName || user.reloadUserInfo.screenName} src={user.photoURL} alt={user.displayName} /> 
-              <Link to='/login' onClick={signingOut} className="btn btn-success">Logout</Link>
+              <Link to='/login' onClick={signingOut} className="btn btn-outline btn-success">Logout</Link>
               </>
              : 
              <Link to='/login' className="btn btn-success">Login</Link>
-     } */}
+     }
 
-     <img className='w-[30px] me-5' src={userOne} alt="" />
-     <Link to='/login' className="btn btn-outline btn-success">Login</Link>
+     {/* <img className='w-[30px] me-5' src={userOne} alt="" />
+     <Link to='/login' className="btn btn-outline btn-success">Login</Link> */}
   </div>
   </div>
     </>

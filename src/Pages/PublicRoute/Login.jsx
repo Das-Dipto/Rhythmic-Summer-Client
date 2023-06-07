@@ -1,20 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Label, TextInput, Checkbox, Button } from 'flowbite-react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import {FcGoogle} from "react-icons/fc"
 import { useForm } from "react-hook-form";
 import Lottie from 'lottie-react'
 import Anim from '../../assets/LoginAnim.json'
+import { AuthContext } from '../../ContextProvider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const Login = () => {
+ 
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [isChecked, setIsChecked] = useState(false);
+    
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
       };
 
-      const onSubmit = data => console.log(data);
+      const onSubmit = (data) => {
+        // console.log(data.email.toLowerCase(), data.password)
+        signIn(data.email.toLowerCase(), data.password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            Swal.fire({
+                title: 'User Login Successful.',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+            navigate(from, { replace: true });
+        })
+
+      }
   return (
     <>
     <div className='flex justify-around items-center flex-wrap w-full'>
@@ -46,12 +73,12 @@ const Login = () => {
                                   <div>
                                 <div className="mb-2 block">
                                   <Label
-                                    htmlFor="password1"
+                                    htmlFor="password"
                                     value='Password'
                                   />
                                 </div>
                                 <TextInput
-                                  id="password1"
+                                  id="password"
                                   type={(isChecked) ? `text`: `password`}
                                   name="password"
                                   {...register("password", { required: true })}

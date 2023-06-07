@@ -1,15 +1,64 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Label, TextInput, Checkbox, Button } from 'flowbite-react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 import Lottie from 'lottie-react'
 import Anim from '../../assets/RegisterAnim.json'
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../ContextProvider/AuthProvider";
+import Swal from 'sweetalert2'
+
 
 const Register = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [isChecked, setIsChecked] = useState(false);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
   };
+
+  const onSubmit = (data) => {
+    console.log(data.email.toLowerCase(), data.password1)
+    createUser(data.email.toLowerCase(), data.password1)
+    .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+
+        updateUserProfile(data.name.toLowerCase(), data.photoURL)
+            .then(() => {
+                const saveUser = { 
+                  name: data.name.toLowerCase(),
+                  email: data.email.toLowerCase(),
+                  photo: data.photoURL,
+                  role:'student'
+                 }
+
+                fetch('http://localhost:5000/allUsers', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            // reset();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'User created successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/');
+                        }
+                    })
+            })
+            .catch(error => console.log(error))
+    })
+  } 
 
   return (
     <>
@@ -20,7 +69,7 @@ const Register = () => {
               </div>
           </div>
          <div className="login-box w-[85%]  mt-12 md:w-[40%] mx-auto bg-white p-8 border border-gray-300 rounded-lg">
-               <form className="flex flex-col gap-4">
+               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                <h1 className='text-2xl font-semibold text-sky-500'>Register</h1>
                <div className="flex flex-col gap-4">
                              <div>
@@ -34,7 +83,10 @@ const Register = () => {
                                    id="base"
                                    type="text"
                                    sizing="md"
+                                   name="name"
+                                   {...register("name",{ required: true })}
                                  />
+                                  {errors.name && <span className='text-red-600 font-semibold'>Name is required</span>}
                              </div>
                              <div>
                                  <div className="mb-2 block">
@@ -47,7 +99,10 @@ const Register = () => {
                                    id="base"
                                    type="email"
                                    sizing="md"
+                                   name="email"
+                                   {...register("email",{ required: true })}
                                  />
+                                  {errors.email && <span className='text-red-600 font-semibold'>Email is required</span>}
                              </div>
                          <div>
                            <div className="mb-2 block">
@@ -59,8 +114,14 @@ const Register = () => {
                            <TextInput
                              id="password1"
                              type={(isChecked) ? `text`: `password`}
-                             required={true}
-                           />
+                             name="password1"
+                             {...register("password1",{ required: true, minLength: 6, maxLength: 20,  
+                                pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/ })}
+                                />
+                              {errors.password1?.type === 'required' && <span className="text-red-600">Password is required</span>}
+                              {errors.password1?.type === 'minLength' && <span className="text-red-600">Password must be 6 characters</span>}
+                              {errors.password1?.type === 'maxLength' && <span className="text-red-600">Password must be less than 20 characters</span>}
+                              {errors.password1?.type === 'pattern' && <span className="text-red-600">Password must have one Uppercase and one special character.</span>}
                          </div>
                         
                          <div>
@@ -73,8 +134,15 @@ const Register = () => {
                            <TextInput
                              id="password2"
                              type={(isChecked) ? `text`: `password`}
-                             required={true}
-                           />
+                             name="password2"
+                             {...register("password2",{ required: true, minLength: 6, maxLength: 20,  
+                              pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/ })}
+                              />
+                            {errors.password2?.type === 'required' && <span className="text-red-600">Password is required</span>}
+                            {errors.password2?.type === 'minLength' && <span className="text-red-600">Password must be 6 characters</span>}
+                            {errors.password2?.type === 'maxLength' && <span className="text-red-600">Password must be less than 20 characters</span>}
+                            {errors.password2?.type === 'pattern' && <span className="text-red-600">Password must have one Uppercase and one special character.</span>}
+                           
                          </div>
 
                          <div>
@@ -88,7 +156,10 @@ const Register = () => {
                              id="URL"
                              type="text"
                              sizing="md"
+                             name="photoURL"
+                             {...register("photoURL",{ required: true })}
                            />
+                             {errors.photoURL && <span className='text-red-600 font-semibold'>PhotoURL is required</span>}
                          </div>
                          
                          <div className=''>

@@ -9,6 +9,14 @@
   box-sizing: border-box;
 }
 
+.user-img{
+  border: 2px solid turquoise;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+
 /* .bannerThree{
   background-image: linear-gradient(to right, rgba(51, 59, 65, 0.771), rgba(34, 32, 32, 0)),
   url('./assets/bannerImgThree.jpg');

@@ -14,6 +14,8 @@ import Classes from './Pages/PublicRoute/Classes.jsx';
 import Dashboard from './Pages/PrivateRoute/Dashboard.jsx';
 import Login from './Pages/PublicRoute/Login.jsx';
 import Register from './Pages/PublicRoute/Register.jsx';
+import ProtectedRoute  from './Component/ProtectedRoute.jsx'
+import AuthProvider from './ContextProvider/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path:"dashboard",
-        element: <Dashboard></Dashboard>
+        element: <ProtectedRoute><Dashboard></Dashboard></ProtectedRoute> 
       },
       {
         path:"login",
@@ -55,5 +57,7 @@ const router = createBrowserRouter([
   }])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-   <RouterProvider router={router} />
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
 )
