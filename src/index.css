@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+/* .bannerThree{
+  background-image: linear-gradient(to right, rgba(51, 59, 65, 0.771), rgba(34, 32, 32, 0)),
+  url('./assets/bannerImgThree.jpg');
+  width: 100%;
+  min-height: 80vh;
+  background-position: center;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding:3rem 0rem;
+}  */
+
+
+
+.special-color{
+  color: #73BBC9;
+}
