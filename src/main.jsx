@@ -24,6 +24,10 @@ import {
 import AdminDash from './Pages/PrivateRoute/AdminDash.jsx';
 import StudentDash from './Pages/PrivateRoute/StudentDash.jsx';
 import InstructorDash from './Pages/PrivateRoute/InstructorDash.jsx';
+import SelectedClass from './Pages/PrivateRoute/SelectedClass.jsx';
+import EnrolledClass from './Pages/PrivateRoute/EnrolledClass.jsx';
+import AddClass from './Pages/PrivateRoute/AddClass.jsx';
+import MyClass from './Pages/PrivateRoute/MyClass.jsx';
 
 
 const queryClient = new QueryClient()
@@ -64,15 +68,45 @@ const router = createBrowserRouter([
       },
       {
         path:"AdminDash",
-        element: <ProtectedRoute> <AdminDash></AdminDash> </ProtectedRoute>
+        element: <ProtectedRoute> <AdminDash></AdminDash> </ProtectedRoute>,
+        children:[
+          {
+           path:"manageClasses",
+           element:<ProtectedRoute><SelectedClass/></ProtectedRoute> 
+          },
+          {
+            path:"manageUsers",
+            element: <ProtectedRoute> <EnrolledClass/> </ProtectedRoute>
+          }
+      ]
       },
       {
         path:"StudentDash",
-        element:<ProtectedRoute> <StudentDash></StudentDash> </ProtectedRoute>
+        element:<ProtectedRoute> <StudentDash></StudentDash> </ProtectedRoute>,
+        children:[
+          {
+           path:"selected",
+           element:<ProtectedRoute><SelectedClass/></ProtectedRoute> 
+          },
+          {
+            path:"enrolled",
+            element: <ProtectedRoute> <EnrolledClass/> </ProtectedRoute>
+          }
+      ]
       },
       {
         path:"InstructorDash",
-        element: <ProtectedRoute> <InstructorDash></InstructorDash> </ProtectedRoute>
+        element: <ProtectedRoute> <InstructorDash></InstructorDash> </ProtectedRoute>,
+        children:[
+          {
+           path:"addClass",
+           element:<ProtectedRoute> <AddClass/> </ProtectedRoute> 
+          },
+          {
+            path:"myClass",
+            element: <ProtectedRoute> <MyClass/> </ProtectedRoute>
+          }
+      ]
       }
 
     ]
