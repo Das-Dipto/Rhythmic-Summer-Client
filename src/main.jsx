@@ -17,6 +17,17 @@ import Register from './Pages/PublicRoute/Register.jsx';
 import ProtectedRoute  from './Component/ProtectedRoute.jsx'
 import AuthProvider from './ContextProvider/AuthProvider.jsx';
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import AdminDash from './Pages/PrivateRoute/AdminDash.jsx';
+import StudentDash from './Pages/PrivateRoute/StudentDash.jsx';
+import InstructorDash from './Pages/PrivateRoute/InstructorDash.jsx';
+
+
+const queryClient = new QueryClient()
+
 const router = createBrowserRouter([
   {
     path:"/",
@@ -50,7 +61,20 @@ const router = createBrowserRouter([
       {
         path:"register",
         element:<Register></Register>
+      },
+      {
+        path:"AdminDash",
+        element: <ProtectedRoute> <AdminDash></AdminDash> </ProtectedRoute>
+      },
+      {
+        path:"StudentDash",
+        element:<ProtectedRoute> <StudentDash></StudentDash> </ProtectedRoute>
+      },
+      {
+        path:"InstructorDash",
+        element: <ProtectedRoute> <InstructorDash></InstructorDash> </ProtectedRoute>
       }
+
     ]
 
 
@@ -58,6 +82,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
-    <RouterProvider router={router} />
+     <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+     </QueryClientProvider>
   </AuthProvider>
 )

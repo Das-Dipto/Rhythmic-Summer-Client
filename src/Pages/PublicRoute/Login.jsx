@@ -24,20 +24,20 @@ const Login = () => {
       };
 
       const onSubmit = (data) => {
-        // console.log(data.email.toLowerCase(), data.password)
-        signIn(data.email.toLowerCase(), data.password)
+        console.log(data.email.toLowerCase(), data.password.toLowerCase())
+        signIn(data.email.toLowerCase(), data.password.toLowerCase())
         .then(result => {
             const user = result.user;
             console.log(user);
-            Swal.fire({
-                title: 'User Login Successful.',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
-            });
+            // Swal.fire({
+            //     title: 'User Login Successful.',
+            //     showClass: {
+            //         popup: 'animate__animated animate__fadeInDown'
+            //     },
+            //     hideClass: {
+            //         popup: 'animate__animated animate__fadeOutUp'
+            //     }
+            // });
             navigate(from, { replace: true });
         })
 

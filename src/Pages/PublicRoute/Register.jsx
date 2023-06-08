@@ -19,8 +19,8 @@ const Register = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data.email.toLowerCase(), data.password1)
-    createUser(data.email.toLowerCase(), data.password1)
+    console.log(data.email.toLowerCase(), data.password1.toLowerCase())
+    createUser(data.email.toLowerCase(), data.password1.toLowerCase())
     .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);

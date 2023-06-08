@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { AuthContext } from '../../ContextProvider/AuthProvider'
+import { Navigate, useLocation } from "react-router";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
+  const {user} = useContext(AuthContext);
+  const location = useLocation();
+  const { refetch, data: allUsers = [] } = useQuery({
+    queryKey: ['users', user?.email],
+    queryFn: async () => {
+        const res = await fetch(`http://localhost:5000/getAllUsers`)
+        return res.json();
+    },
+})
+
+ console.log(allUsers);
+ const signInUser = allUsers?.find((item, index)=> item?.email == user.email )
+console.log(signInUser);
+  
+  if(signInUser?.role == 'admin'){
+    return <Navigate to="/AdminDash" state={{from: location}} replace></Navigate>
+  }
+
+  else if(signInUser?.role == 'student'){
+   return <Navigate to="/StudentDash" state={{from: location}} replace></Navigate>
+  }
+
+  else if(signInUser?.role == 'instructor'){
+   return <Navigate to="/InstructorDash" state={{from: location}} replace></Navigate>
+  }
+
+
+
 }
 
 export default Dashboard
