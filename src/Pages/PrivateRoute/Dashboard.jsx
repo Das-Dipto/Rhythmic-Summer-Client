@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../ContextProvider/AuthProvider'
 import { Navigate, useLocation } from "react-router";
+import axios from 'axios';
+
 
 const Dashboard = () => {
   const {user} = useContext(AuthContext);
@@ -9,13 +11,13 @@ const Dashboard = () => {
   const { refetch, data: allUsers = [] } = useQuery({
     queryKey: ['users', user?.email],
     queryFn: async () => {
-        const res = await fetch(`http://localhost:5000/getAllUsers`)
-        return res.json();
+        const res = await axios.get(`http://localhost:5000/getAllUsers`)
+        return res.data;
     },
 })
 
- console.log(allUsers);
- const signInUser = allUsers?.find((item, index)=> item?.email == user.email )
+console.log(allUsers);
+const signInUser = allUsers?.find((item, index)=> item?.email == user.email )
 console.log(signInUser);
   
   if(signInUser?.role == 'admin'){

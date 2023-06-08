@@ -28,6 +28,8 @@ import SelectedClass from './Pages/PrivateRoute/SelectedClass.jsx';
 import EnrolledClass from './Pages/PrivateRoute/EnrolledClass.jsx';
 import AddClass from './Pages/PrivateRoute/AddClass.jsx';
 import MyClass from './Pages/PrivateRoute/MyClass.jsx';
+import ManageClass from './Pages/PrivateRoute/ManageClass.jsx'
+import ManageUser from './Pages/PrivateRoute/ManageUser.jsx';
 
 
 const queryClient = new QueryClient()
@@ -72,11 +74,11 @@ const router = createBrowserRouter([
         children:[
           {
            path:"manageClasses",
-           element:<ProtectedRoute><SelectedClass/></ProtectedRoute> 
+           element:<ProtectedRoute> <ManageClass/>  </ProtectedRoute> 
           },
           {
             path:"manageUsers",
-            element: <ProtectedRoute> <EnrolledClass/> </ProtectedRoute>
+            element: <ProtectedRoute> <ManageUser/> </ProtectedRoute>
           }
       ]
       },
