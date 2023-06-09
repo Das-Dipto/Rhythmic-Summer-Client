@@ -7,7 +7,7 @@ import { Carousel } from 'flowbite-react'
 const BannerSlider = () => {
   return (
     <>
-{/* <Carousel className='h-[68vh] bg-black'>
+{/* <Carousel className='h-[65vh] bg-black'>
   <div className="relative banner flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
       <img src={bannerImgOne} className='w-full h-full' alt="" />
       <div className='top-20 absolute'>
