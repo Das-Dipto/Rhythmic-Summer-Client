@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 
 const Login = () => {
  
-  const { signIn } = useContext(AuthContext);
+  const { signIn, user} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,16 +29,20 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
-            // Swal.fire({
-            //     title: 'User Login Successful.',
-            //     showClass: {
-            //         popup: 'animate__animated animate__fadeInDown'
-            //     },
-            //     hideClass: {
-            //         popup: 'animate__animated animate__fadeOutUp'
-            //     }
-            // });
-            navigate(from, { replace: true });
+            Swal.fire({
+                title: `Welcome ${user?.displayName.toUpperCase() || user?.reloadUserInfo.screenName.toUpperCase()}`,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                timer: 1000
+            });
+            setTimeout(()=>{
+              navigate(from, { replace: true });
+            },1000)
+           
         })
 
       }

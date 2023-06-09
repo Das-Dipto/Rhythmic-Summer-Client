@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 const AddClass = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const {user} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
   console.log(img_hosting_token);
@@ -26,10 +27,43 @@ const AddClass = () => {
     .then(imgResponse => {
         if(imgResponse.success){
             const imgURL = imgResponse.data.display_url;
-            const {instructorName, classes, instructorEmail, price, seats} = data;
-            const newItem = {instructorName, classes, instructorEmail, price, seats, picture:imgURL, status:'pending'}
+            const {instructorName, className, instructorEmail, price, seats} = data;
+            const newItem = {
+              instructorName,
+              className, 
+              instructorEmail,
+              price: parseFloat(price), 
+              seats, 
+              picture:imgURL, 
+              status:'pending'
+            }
             console.log(newItem)
-        }
+                  fetch('http://localhost:5000/addClasses', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(newItem)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        // reset();
+                        Swal.fire({
+                          position: 'top-end',
+                          icon: 'success',
+                          title: 'Successfully created class.',
+                          showConfirmButton: false,
+                          timer: 1500
+                        });
+                        setTimeout(()=>{
+                          navigate('/InstructorDash/myClass');
+                        },1600)
+                            
+                        }
+                    })
+                  .catch(error => console.log(error))
+          }
       })
   }
 
@@ -137,7 +171,7 @@ const AddClass = () => {
                                       </div>
                                       <TextInput
                                         id="price"
-                                        type="number"
+                                        type="text"
                                         sizing="md"
                                         name="price"
                                         {...register("price",{ required: true })}
