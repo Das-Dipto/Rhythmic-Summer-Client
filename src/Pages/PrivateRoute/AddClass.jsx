@@ -44,9 +44,9 @@ const AddClass = () => {
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify(newItem)
-                })
-                .then(res => res.json())
-                .then(data => {
+                  })
+                 .then(res => res.json())
+                 .then(data => {
                     if (data.insertedId) {
                         // reset();
                         Swal.fire({
@@ -187,7 +187,7 @@ const AddClass = () => {
                                 </Button>
                               {/* </Link> */}
                               </form>
-                        </div>
+        </div>
                   </>
   )
 }

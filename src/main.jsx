@@ -16,7 +16,6 @@ import Login from './Pages/PublicRoute/Login.jsx';
 import Register from './Pages/PublicRoute/Register.jsx';
 import ProtectedRoute  from './Component/ProtectedRoute.jsx'
 import AuthProvider from './ContextProvider/AuthProvider.jsx';
-
 import {
   QueryClient,
   QueryClientProvider,
@@ -30,6 +29,7 @@ import AddClass from './Pages/PrivateRoute/AddClass.jsx';
 import MyClass from './Pages/PrivateRoute/MyClass.jsx';
 import ManageClass from './Pages/PrivateRoute/ManageClass.jsx'
 import ManageUser from './Pages/PrivateRoute/ManageUser.jsx';
+import UpdateClassInfo from './Pages/PrivateRoute/UpdateClassInfo.jsx';
 
 
 const queryClient = new QueryClient()
@@ -107,6 +107,10 @@ const router = createBrowserRouter([
           {
             path:"myClass",
             element: <ProtectedRoute> <MyClass/> </ProtectedRoute>
+          },
+          {
+            path:"updateClassInfo/:id",
+            element: <ProtectedRoute> <UpdateClassInfo/> </ProtectedRoute>
           }
       ]
       }
