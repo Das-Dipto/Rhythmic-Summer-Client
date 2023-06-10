@@ -2,10 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import Root from './Pages/PublicRoute/Root.jsx';
 import Home from './Pages/PublicRoute/Home.jsx';
 import Error from './Pages/PublicRoute/Error.jsx';
@@ -16,10 +13,7 @@ import Login from './Pages/PublicRoute/Login.jsx';
 import Register from './Pages/PublicRoute/Register.jsx';
 import ProtectedRoute  from './Component/ProtectedRoute.jsx'
 import AuthProvider from './ContextProvider/AuthProvider.jsx';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import { QueryClient,QueryClientProvider} from '@tanstack/react-query'
 import AdminDash from './Pages/PrivateRoute/AdminDash.jsx';
 import StudentDash from './Pages/PrivateRoute/StudentDash.jsx';
 import InstructorDash from './Pages/PrivateRoute/InstructorDash.jsx';
@@ -30,6 +24,7 @@ import MyClass from './Pages/PrivateRoute/MyClass.jsx';
 import ManageClass from './Pages/PrivateRoute/ManageClass.jsx'
 import ManageUser from './Pages/PrivateRoute/ManageUser.jsx';
 import UpdateClassInfo from './Pages/PrivateRoute/UpdateClassInfo.jsx';
+import Payment from './Pages/PrivateRoute/Payment.jsx';
 
 
 const queryClient = new QueryClient()
@@ -93,6 +88,10 @@ const router = createBrowserRouter([
           {
             path:"enrolled",
             element: <ProtectedRoute> <EnrolledClass/> </ProtectedRoute>
+          },
+          {
+            path:"payment/:id",
+            element: <ProtectedRoute> <Payment/> </ProtectedRoute>
           }
       ]
       },

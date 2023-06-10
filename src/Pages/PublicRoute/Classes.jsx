@@ -46,10 +46,9 @@ const handleSelect =(item) =>{
                 showConfirmButton: false,
                 timer: 1500
               });
-              setTimeout(()=>{
-                navigate('/StudentDash/selected');
-              },1600)
-                  
+              // setTimeout(()=>{
+              //   navigate('/StudentDash/selected');
+              // },1600)    
               }
           })
         .catch(error => console.log(error))
@@ -62,10 +61,9 @@ const handleSelect =(item) =>{
     }
 }
   return (
-   
       approvedClasses && <div>
        <h1 className='mt-8 text-center text-4xl font-bold'>All Approved Classes</h1>
-      <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">{
+       <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">{
         approvedClasses?.map((item, index)=>(
           <div key={item._id} className="card mt-10 md:mt-16 bg-base-100 shadow-xl">
           <figure><img className='w-full' src={item.picture} alt={item.instructorName} /></figure>

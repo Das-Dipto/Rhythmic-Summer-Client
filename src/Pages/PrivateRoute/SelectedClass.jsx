@@ -16,6 +16,36 @@ const SelectedClass = () => {
         return res.data;
     },
 })
+
+const deleteHandle =(id) =>{
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:5000/deleteClass/${id}`,{
+        method:'DELETE'
+      })
+      .then((res)=>res.json())
+      .then((data)=>{
+        if(data.deletedCount > 0){
+          Swal.fire(
+            'Deleted!',
+            'Class has been removed.',
+            'success'
+          )
+          refetch()
+        }
+      })
+      .catch((err)=>console.log(err.message))
+    }
+  })
+}
   return (
       selectClasses && <div className="overflow-x-auto ms-4 mt-8">
               <table className="table table-xs">
@@ -37,9 +67,9 @@ const SelectedClass = () => {
                         <td><img className='w-[70px]' src={item.picture} alt={item.className} /></td>
                         <td>{item.className}</td>
                         <td>{item.instructorName.toUpperCase()}</td>
-                        <td>{item.price}</td>
+                        <td>$ {item.price}</td>
                         <td>
-                        <button className="btn btn-outline btn-primary me-5">
+                        <button onClick={()=>deleteHandle(item._id)} className="btn btn-outline btn-primary me-5">
                            <RiDeleteBin6Line fontSize={20}/>
                         </button>
                         <Link to={`../payment/${item._id}`}>
