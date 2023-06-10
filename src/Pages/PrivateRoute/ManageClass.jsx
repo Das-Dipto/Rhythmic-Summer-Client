@@ -27,9 +27,9 @@ const handleFeedback = (event) =>{
 
 
 const updateStatus = (itemID, status, feedback) =>{
-const updatedItem = {status:status, feedback:feedback}
-console.log(updatedItem);
-  
+  const updatedItem = {status:status, feedback:feedback}
+  console.log(updatedItem);
+    
   Swal.fire({
     title: 'Do you want to save the changes?',
     showDenyButton: true,
@@ -99,7 +99,7 @@ console.log(updatedItem);
                      <button
                      className="btn btn-outline btn-error me-4"
                      disabled={item.status == `Pending` ? false : true}
-                     onClick={()=> updateStatus(item._id, `Deny`, item.feedback)}>Deny</button>
+                     onClick={()=> updateStatus(item._id, `Denied`, item.feedback)}>Deny</button>
 
                      <button
                      className="btn btn-outline btn-info"    onClick={()=>window.my_modal_4.showModal()}>Feedback</button>
