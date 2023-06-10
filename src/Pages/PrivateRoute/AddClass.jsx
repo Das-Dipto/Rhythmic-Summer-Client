@@ -35,7 +35,8 @@ const AddClass = () => {
               price: parseFloat(price), 
               seats, 
               picture:imgURL, 
-              status:'pending'
+              status:'Pending',
+              feedback: ''
             }
             console.log(newItem)
                   fetch('http://localhost:5000/addClasses', {

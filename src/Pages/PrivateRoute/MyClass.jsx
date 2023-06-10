@@ -43,7 +43,7 @@ const MyClass = () => {
                    <td>{item.seats}</td>
                    <td>0</td>
                    <td>{item.status}</td>
-                   <td></td>
+                   <td>{(item.feedback) ? item.feedback : ''}</td>
                    <td>
                    <Link to={`../updateClassInfo/${item._id}`}>
                       <button className="btn btn-error">
