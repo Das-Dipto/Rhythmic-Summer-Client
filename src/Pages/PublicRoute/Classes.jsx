@@ -30,11 +30,12 @@ const { data: getRole= [] } = useQuery({
 const notify = () => toast.warn("You have to login first", {autoClose:700});
 const handleSelect =(item) =>{
     if(user){
-        const {picture, className, instructorName, price} = item;
+        const {picture, className, instructorName, instructorEmail, price} = item;
         const selectedClassInfo = {
           picture,
           className,
           instructorName,
+          instructorEmail,
           price,
           addedBy:user?.email
         }

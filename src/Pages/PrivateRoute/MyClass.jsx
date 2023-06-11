@@ -41,7 +41,7 @@ const MyClass = () => {
                    <td>{item.className.toUpperCase()}</td>
                    <td>{item.price}</td>
                    <td>{item.seats}</td>
-                   <td>0</td>
+                   <td>{item.enrollment}</td>
                    <td>{item.status}</td>
                    <td>{(item.feedback) ? item.feedback : ''}</td>
                    <td>

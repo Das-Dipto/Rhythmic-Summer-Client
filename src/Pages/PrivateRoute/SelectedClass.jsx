@@ -55,6 +55,7 @@ const deleteHandle =(id) =>{
                     <th>Picture</th> 
                     <th>Class Name</th> 
                     <th>Instructor Name</th> 
+                    <th>Instructor Email</th> 
                     <th>Price</th> 
                     <th>Buttons</th> 
                   </tr>
@@ -67,6 +68,7 @@ const deleteHandle =(id) =>{
                         <td><img className='w-[70px]' src={item.picture} alt={item.className} /></td>
                         <td>{item.className}</td>
                         <td>{item.instructorName.toUpperCase()}</td>
+                        <td>{item.instructorEmail}</td>
                         <td>$ {item.price}</td>
                         <td>
                         <button onClick={()=>deleteHandle(item._id)} className="btn btn-outline btn-primary me-5">

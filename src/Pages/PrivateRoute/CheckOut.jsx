@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
 const CheckOut = ({item}) => {
+    const [Data, setData] = useState();
     const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
@@ -16,8 +17,40 @@ const CheckOut = ({item}) => {
     const [transactionId, setTransactionId] = useState('');
     const notify = () => toast.success("Payment Completed", {autoClose: 700, theme: "colored"});
     // console.log(item);
-    const {_id, addedBy, picture, price, className, instructorName} = item;
+    const {_id, addedBy, picture, price, className, instructorName,  instructorEmail} = item;
 
+
+    const ext =(dt) =>{
+      fetch(`http://localhost:5000/updateSeats?email=${dt?.instructorEmail}&className=${dt?.className}`)
+      .then((res)=>res.json())
+      .then((data)=>{
+         setData(data)
+         console.log(data.seats, typeof data.seats)
+         const updatedSeats = data.seats - 1;
+         const updatedEnrollment = data.enrollment + 1;
+        console.log(updatedSeats, updatedEnrollment);
+         const updatedItem = {
+              updatedSeats,
+              updatedEnrollment
+         } 
+         console.log(updatedItem)
+
+         fetch(`http://localhost:5000/updatedOnly/${data._id}`,{
+           method:'PUT',
+           headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedItem),
+         })
+         .then((res)=>res.json())
+         .then((data)=>console.log(data))
+         .catch((err)=>console.log(err.message))
+        })
+
+      .catch((err)=>console.log(err.message))
+    }
+   
+   
     useEffect(() => {
         if (price > 0) {
           fetch('http://localhost:5000/create-payment-intent', {
@@ -100,6 +133,7 @@ const CheckOut = ({item}) => {
             const paymentInfo = {
               payee: user?.displayName,
               email: user?.email,
+              instructorEmail,
               transactionId: paymentIntent.id,
               class:className,
               price,
@@ -124,12 +158,15 @@ const CheckOut = ({item}) => {
                 if (data.insertedId) {
                     console.log('successful')
                     notify();
+                    ext(item)
                     fetch(`http://localhost:5000/deleteSelectClass/${item._id}`,{
                        method:"DELETE"
                     })
                     .then((res)=>res.json())
                     .then((data)=>console.log(data))
                     .error((err)=>console.log(err.message))
+
+                   
                     
                   // Display confirmation message
                 }
