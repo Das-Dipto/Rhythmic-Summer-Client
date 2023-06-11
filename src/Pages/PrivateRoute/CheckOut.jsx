@@ -1,8 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { AuthContext } from '../../ContextProvider/AuthProvider'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const CheckOut = ({item}) => {
+    const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useContext(AuthContext);
@@ -10,9 +14,9 @@ const CheckOut = ({item}) => {
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
-    
+    const notify = () => toast.success("Payment Completed", {autoClose: 700, theme: "colored"});
     // console.log(item);
-    const {addedBy, picture, price, className, instructorName} = item;
+    const {_id, addedBy, picture, price, className, instructorName} = item;
 
     useEffect(() => {
         if (price > 0) {
@@ -94,7 +98,7 @@ const CheckOut = ({item}) => {
             setTransactionId(paymentIntent.id);
       
             const paymentInfo = {
-              payee: addedBy,
+              payee: user?.displayName,
               email: user?.email,
               transactionId: paymentIntent.id,
               class:className,
@@ -119,6 +123,14 @@ const CheckOut = ({item}) => {
                 console.log(data);
                 if (data.insertedId) {
                     console.log('successful')
+                    notify();
+                    fetch(`http://localhost:5000/deleteSelectClass/${item._id}`,{
+                       method:"DELETE"
+                    })
+                    .then((res)=>res.json())
+                    .then((data)=>console.log(data))
+                    .error((err)=>console.log(err.message))
+                    
                   // Display confirmation message
                 }
               })
@@ -152,12 +164,13 @@ const CheckOut = ({item}) => {
                     },
                 }}
             />
-            <button className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing}>
+            <button className="btn btn-neutral btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing}>
                 Pay
             </button>
         </form>
         {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
         {transactionId && <p className="text-green-500">Transaction complete with transactionId: {transactionId}</p>}
+        <ToastContainer/>
    </>
   )
 }
