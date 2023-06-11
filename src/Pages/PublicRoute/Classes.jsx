@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios';
@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
 
 const Classes = () => {
+  const [data, setData] = useState()
   const {user} = useContext(AuthContext)
   const navigate = useNavigate();
   const { refetch, data: approvedClasses = [] } = useQuery({
@@ -17,6 +18,15 @@ const Classes = () => {
         return res.data;
     },
 })
+
+const { data: getRole= [] } = useQuery({
+  queryKey: ['role', user?.email],
+  queryFn: async () => {
+      const res = await axios.get(`http://localhost:5000/getRole?email=${user?.email}`)
+      return res.data;
+  },
+})
+
 const notify = () => toast.warn("You have to login first", {autoClose:700});
 const handleSelect =(item) =>{
     if(user){
@@ -61,7 +71,7 @@ const handleSelect =(item) =>{
     }
 }
   return (
-      approvedClasses && <div>
+     approvedClasses && <div>
        <h1 className='mt-8 text-center text-4xl font-bold'>All Approved Classes</h1>
        <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">{
         approvedClasses?.map((item, index)=>(
@@ -73,7 +83,9 @@ const handleSelect =(item) =>{
             <h4>Available Seats: {item.seats}</h4>
             <h4>Price: {item.price}</h4>
             <div className="card-actions justify-start">
-              <button onClick={()=>handleSelect(item)} className="btn btn-primary">Select</button>
+              <button
+              disabled={getRole.role == 'student' ? false : true}
+              onClick={()=>handleSelect(item)} className="btn btn-primary">Select</button>
             </div>
           </div>
         </div>

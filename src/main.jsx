@@ -25,6 +25,7 @@ import ManageClass from './Pages/PrivateRoute/ManageClass.jsx'
 import ManageUser from './Pages/PrivateRoute/ManageUser.jsx';
 import UpdateClassInfo from './Pages/PrivateRoute/UpdateClassInfo.jsx';
 import Payment from './Pages/PrivateRoute/Payment.jsx';
+import PaymentHistory from './Pages/PrivateRoute/PaymentHistory.jsx';
 
 
 const queryClient = new QueryClient()
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
           {
             path:"payment/:id",
             element: <ProtectedRoute> <Payment/> </ProtectedRoute>
+          },
+          {
+            path:"paymentHistory",
+            element:<ProtectedRoute> <PaymentHistory/> </ProtectedRoute>
           }
       ]
       },
