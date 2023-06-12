@@ -15,10 +15,11 @@
 
 - Website features-
 
-  - This website deals with music intrument training school and facility during summmer-camp.
-    Here initially users registered as student and their role can be revisied as instructor and admin later on
+  - This website deals with music instruments training school and facility during summer-camp.
+    Here initially users registers as student and their role can be revised as instructor and admin later on by
+    main Admin.
 
-  - Admin plays the prime role in this site. Formally he/she manages users and approve/ deny class by instructor.
+  - Admin plays the prime role in this site. Formally he/she manages users and approve/deny class by instructor.
     H/She delivers feedback on deny status whenever it requires. A dedicated built in dashboard enables him/her to perform his responsibilty
 
   - Instructors are able to add music related class with available seats and price. They have also got a dedicated

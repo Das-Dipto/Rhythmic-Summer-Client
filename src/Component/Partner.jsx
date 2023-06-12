@@ -13,7 +13,7 @@ const Partner = () => {
   return (
     <div className='supplier-container my-32 '>
     <h1 className='mt-20 text-2xl md:text-5xl font-bold text-center'>Our<span className='text-teal-300'> Partners</span></h1>
-    <div className="logos">
+    <div className="logos my-12">
       <div className="logos-slide">
         <img src={IbanazLogo} alt='IbanazLogo' />
         <img src={GibsonLogo} alt='GibsonLogo' />

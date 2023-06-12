@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../ContextProvider/AuthProvider'
 import { Navigate, useLocation } from "react-router";
@@ -8,6 +8,7 @@ import useTitle from '../../Hooks/useTitle'
 
 const ManageClass = () => {
   useTitle('Manage Class')
+  const modalRef = useRef(null);
   const {user} = useContext(AuthContext);
 
   const { refetch, data: allClass = [] } = useQuery({
@@ -18,6 +19,10 @@ const ManageClass = () => {
     },
 })
 // console.log(allClass);
+
+const showModal = () => {
+  modalRef.current.showModal();
+};
 
 const handleFeedback = (event) =>{
   // event.preventDefault();
@@ -107,32 +112,27 @@ const updateStatus = (itemID, status, feedback) =>{
                         onClick={()=> updateStatus(item._id, `Denied`, item.feedback)}>Deny</button>
 
                         <button
-                        className="btn btn-outline btn-info"    onClick={()=>window.my_modal_4.showModal()}>Feedback</button>
-
-                    <dialog id="my_modal_4" className="modal">
-                          <form onSubmit={handleFeedback} method="dialog" className="modal-box w-11/12 max-w-5xl">
-                            <h3 className="font-bold text-lg">Hello Mr. Admin!</h3>
-                            <p className="py-4">Write Your Propestive feedback below</p>
-                            <input className="hidden" type="text" name='itemID' defaultValue={item._id}  readOnly/>
-                            <input className="hidden" type="text" name='status' defaultValue={item.status}  readOnly/>
-                            <textarea className="textarea textarea-success w-full" name='feedback' placeholder="Feedback"></textarea>
-                      
-                            <div className="modal-action">
-                              {/* if there is a button, it will close the modal */}
-                              <button type='submit' className="btn">Send</button>
-                            </div>
-                          </form>
-                    </dialog>
+                        className="btn btn-outline btn-info" onClick={showModal}>Feedback</button>
+                        <dialog ref={modalRef} className="modal">
+                              <form onSubmit={handleFeedback} method="dialog" className="modal-box w-11/12 max-w-5xl">
+                                <h3 className="font-bold text-lg">Hello Mr. Admin!</h3>
+                                <p className="py-4">Write Your Propestive feedback below</p>
+                                <input className="hidden" type="text" name='itemID' defaultValue={item._id}  readOnly/>
+                                <input className="hidden" type="text" name='status' defaultValue={item.status}  readOnly/>
+                                <textarea className="textarea textarea-success w-full" name='feedback' placeholder="Feedback"></textarea>
+                          
+                                <div className="modal-action">
+                                  {/* if there is a button, it will close the modal */}
+                                  <button type='submit' className="btn">Send</button>
+                                </div>
+                              </form>
+                        </dialog>
                       </td>
-                      {/* You can open the modal using ID.showModal() method */}
-                        {/* <button className="btn" onClick={()=>window.my_modal_4.showModal()}>open modal</button> */}
-                      
                     </tr>
                   ))
                 }
               </tbody> 
             </table>
-          
           </div>
        </div>
     
