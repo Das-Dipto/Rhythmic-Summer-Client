@@ -18,7 +18,10 @@ const EnrolledClass = () => {
 
   return (
     
-        enrolledClasses && <div className="overflow-x-auto ms-4 mt-8">
+        enrolledClasses &&
+        <div>
+         <h1 className='text-3xl font-semibold text-center my-5'>Student Dashboard-  Enrolled Class</h1>
+         <div className="overflow-x-auto ms-4 mt-8">
               <table className="table table-xs">
                 <thead className='table-head'>
                   <tr >
@@ -48,6 +51,7 @@ const EnrolledClass = () => {
               <Link to='../paymentHistory'>
                   <button className='btn btn-sm btn-outline btn-neutral ms-10 mt-5'>Payment History</button>
               </Link>
+        </div>
         </div>
   )
 }

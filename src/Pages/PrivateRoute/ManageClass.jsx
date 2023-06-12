@@ -63,72 +63,76 @@ const updateStatus = (itemID, status, feedback) =>{
 
   return (
     
-       allClass && <div className="overflow-x-auto ms-4 mt-8">
-        <table className="table table-xs">
-          <thead className='table-head'>
-            <tr >
-              <th></th> 
-              <th>Picture</th> 
-              <th>Class Info</th> 
-              <th>Seats</th> 
-              <th>Price</th> 
-              <th>Status</th> 
-              <th>Update Status</th> 
-            </tr>
-          </thead> 
-          <tbody>
-            {
-              allClass?.map((item, index)=>(
-                <tr key={item._id} >
-                   <th>{index + 1}</th>
-                   <td > <img className='user-img' src={item.picture} alt={item.name} /> </td>
-                   <td>
-                      <p>Class name: {item.className.toUpperCase()} </p>
-                      <p>Instructor name:  {item.instructorName.toUpperCase()} </p>
-                      <p>Instructor email: {item.instructorEmail} </p>
-                   </td>
-                   <td>{item.seats}</td>
-                   <td>{item.price}</td>
-                   <td>{item.status}</td>
-                   <td>
-                     <button
-                     className="btn btn-outline btn-primary me-4" 
-                     disabled={item.status == `Pending` ? false : true}
-                     onClick={()=> updateStatus(item._id, `Approved`, item.feedback)}>Approve</button>
-
-                     <button
-                     className="btn btn-outline btn-error me-4"
-                     disabled={item.status == `Pending` ? false : true}
-                     onClick={()=> updateStatus(item._id, `Denied`, item.feedback)}>Deny</button>
-
-                     <button
-                     className="btn btn-outline btn-info"    onClick={()=>window.my_modal_4.showModal()}>Feedback</button>
-
-                <dialog id="my_modal_4" className="modal">
-                      <form onSubmit={handleFeedback} method="dialog" className="modal-box w-11/12 max-w-5xl">
-                        <h3 className="font-bold text-lg">Hello Mr. Admin!</h3>
-                        <p className="py-4">Write Your Propestive feedback below</p>
-                        <input className="hidden" type="text" name='itemID' defaultValue={item._id}  readOnly/>
-                        <input className="hidden" type="text" name='status' defaultValue={item.status}  readOnly/>
-                        <textarea className="textarea textarea-success w-full" name='feedback' placeholder="Feedback"></textarea>
-                   
-                        <div className="modal-action">
-                          {/* if there is a button, it will close the modal */}
-                          <button type='submit' className="btn">Send</button>
-                        </div>
-                      </form>
-                </dialog>
-                   </td>
-                   {/* You can open the modal using ID.showModal() method */}
-                    {/* <button className="btn" onClick={()=>window.my_modal_4.showModal()}>open modal</button> */}
-                   
+       allClass && 
+       <div>
+          <h1 className='text-3xl font-semibold text-center my-5'>Admin Dashboard-  Manage Class</h1>
+          <div className="overflow-x-auto ms-4 mt-8">
+            <table className="table table-xs">
+              <thead className='table-head'>
+                <tr >
+                  <th></th> 
+                  <th>Picture</th> 
+                  <th>Class Info</th> 
+                  <th>Seats</th> 
+                  <th>Price</th> 
+                  <th>Status</th> 
+                  <th>Update Status</th> 
                 </tr>
-              ))
-            }
-          </tbody> 
-        </table>
-       
-    </div>
+              </thead> 
+              <tbody>
+                {
+                  allClass?.map((item, index)=>(
+                    <tr key={item._id} >
+                      <th>{index + 1}</th>
+                      <td > <img className='user-img' src={item.picture} alt={item.name} /> </td>
+                      <td>
+                          <p>Class name: {item.className.toUpperCase()} </p>
+                          <p>Instructor name:  {item.instructorName.toUpperCase()} </p>
+                          <p>Instructor email: {item.instructorEmail} </p>
+                      </td>
+                      <td>{item.seats}</td>
+                      <td>{item.price}</td>
+                      <td>{item.status}</td>
+                      <td>
+                        <button
+                        className="btn btn-outline btn-primary me-4" 
+                        disabled={item.status == `Pending` ? false : true}
+                        onClick={()=> updateStatus(item._id, `Approved`, item.feedback)}>Approve</button>
+
+                        <button
+                        className="btn btn-outline btn-error me-4"
+                        disabled={item.status == `Pending` ? false : true}
+                        onClick={()=> updateStatus(item._id, `Denied`, item.feedback)}>Deny</button>
+
+                        <button
+                        className="btn btn-outline btn-info"    onClick={()=>window.my_modal_4.showModal()}>Feedback</button>
+
+                    <dialog id="my_modal_4" className="modal">
+                          <form onSubmit={handleFeedback} method="dialog" className="modal-box w-11/12 max-w-5xl">
+                            <h3 className="font-bold text-lg">Hello Mr. Admin!</h3>
+                            <p className="py-4">Write Your Propestive feedback below</p>
+                            <input className="hidden" type="text" name='itemID' defaultValue={item._id}  readOnly/>
+                            <input className="hidden" type="text" name='status' defaultValue={item.status}  readOnly/>
+                            <textarea className="textarea textarea-success w-full" name='feedback' placeholder="Feedback"></textarea>
+                      
+                            <div className="modal-action">
+                              {/* if there is a button, it will close the modal */}
+                              <button type='submit' className="btn">Send</button>
+                            </div>
+                          </form>
+                    </dialog>
+                      </td>
+                      {/* You can open the modal using ID.showModal() method */}
+                        {/* <button className="btn" onClick={()=>window.my_modal_4.showModal()}>open modal</button> */}
+                      
+                    </tr>
+                  ))
+                }
+              </tbody> 
+            </table>
+          
+          </div>
+       </div>
     
   )
 }

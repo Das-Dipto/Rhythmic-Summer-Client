@@ -72,20 +72,20 @@ const handleSelect =(item) =>{
     }
 }
   return (
-     approvedClasses && <div>
+     approvedClasses && <div className='my-20'>
        <h1 className='mt-8 text-center text-4xl font-bold'>All Approved Classes</h1>
-       <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">{
+       <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 my-12">{
         approvedClasses?.map((item, index)=>(
-          <div key={item._id} className="card mt-10 md:mt-16 bg-base-100 shadow-xl">
-          <figure><img className='w-full' src={item.picture} alt={item.instructorName} /></figure>
+        <div key={item._id} className={`card mt-10 md:mt-16 bg-base-100 shadow-xl ${item.seats == 0 ? `bg-red-400` : `bg-white`}`}>
+          <figure><img className='w-full md:h-[250px]' src={item.picture} alt={item.instructorName} /></figure>
           <div className="card-body">
             <h1 className="card-title">Class name: {item.className}</h1>
-            <h2>Instructor Name: {item.instructorName}</h2>
+            <h2>Instructor Name: {item.instructorName.toUpperCase()}</h2>
             <h4>Available Seats: {item.seats}</h4>
             <h4>Price: {item.price}</h4>
             <div className="card-actions justify-start">
               <button
-              disabled={getRole.role == 'student' ? false : true}
+              disabled={getRole.role == 'student' ? (item.seats > 0 ? false : true) : true }
               onClick={()=>handleSelect(item)} className="btn btn-primary">Select</button>
             </div>
           </div>

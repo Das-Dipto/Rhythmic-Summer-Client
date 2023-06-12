@@ -11,7 +11,6 @@ const Error = () => {
                 <button className='btn md:btn-outline btn-success mt-9'> <AiOutlineArrowLeft style={25}/>  Back to Home</button>
             </Link>
         </div>
-
     </div>
   )
 }

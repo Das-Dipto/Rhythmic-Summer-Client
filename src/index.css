@@ -139,3 +139,10 @@
   background-size: cover;
   padding:3rem 0rem;
 }
+
+
+@media screen and (max-width:400px){
+   .logged-user{
+      display: none;
+   }
+}

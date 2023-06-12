@@ -19,7 +19,10 @@ const MyClass = () => {
 
 
   return (
-    allClasses && <div className="overflow-x-auto ms-4 mt-8">
+    allClasses && 
+    <div>
+      <h1 className='text-3xl font-semibold text-center my-5'>Instructor Dashboard-  My Added Class</h1>
+      <div className="overflow-x-auto ms-4 mt-8">
         <table className="table table-xs">
           <thead className='table-head'>
             <tr >
@@ -58,6 +61,7 @@ const MyClass = () => {
           </tbody> 
           
         </table>
+      </div>
     </div>
   )
 }

@@ -12,9 +12,9 @@ const Instructors = () => {
   })
 
   return (
-    instructors && <div>
+    instructors && <div className='my-20'>
     <h1 className='mt-8 text-center text-4xl font-bold'>All Registered Instructors</h1>
-    <div className="w-[90%]  mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">{
+    <div className="w-[90%]  mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 ">{
     instructors?.map((item, index)=>(
        <div key={item._id} className="card mt-10 md:mt-16 bg-base-100 shadow-xl">
        <figure><img className='w-full md:h-[260px]' src={item.photo} alt={item.name} /></figure>

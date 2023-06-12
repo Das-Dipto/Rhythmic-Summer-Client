@@ -68,7 +68,7 @@ const Navber = (props) => {
 
       </ul>
     </div>
-    <Link to='/' className="btn btn-ghost normal-case text-3xl special-color">
+    <Link to='/' className="btn btn-ghost normal-case text-1xl md:text-3xl special-color">
         <img src={MainLogo} className='w-[35px] hidden md:flex' alt="logo" />    
          Rhythmic
     </Link>
@@ -106,7 +106,7 @@ const Navber = (props) => {
    <input onChange={handleChange} type="checkbox" className="toggle me-3"/>
     {
             user ? <>
-              <img className='me-6 user-img' title={user.displayName || user.reloadUserInfo.screenName} src={user.photoURL} alt={user.displayName} /> 
+              <img className='me-6 user-img logged-user' title={user.displayName || user.reloadUserInfo.screenName} src={user.photoURL} alt={user.displayName} /> 
               <Link to='/login' onClick={signingOut} className="btn btn-outline btn-success">Logout</Link>
               </>
              : 

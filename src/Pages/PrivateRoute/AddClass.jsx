@@ -77,7 +77,8 @@ const AddClass = () => {
 
   
   return (
-    <>
+    <div>
+      <h1 className='text-3xl font-semibold text-center my-5'>Instructor Dashboard-  Add Class</h1>
         <div className="login-box w-[65%] ms-28 mt-12  mx-auto bg-white p-8 border border-gray-300 rounded-lg">
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                     <h1 className='text-2xl text-sky-500 font-semibold'>Create Class</h1>
@@ -195,7 +196,7 @@ const AddClass = () => {
                               {/* </Link> */}
                               </form>
         </div>
-                  </>
+    </div>
   )
 }
 

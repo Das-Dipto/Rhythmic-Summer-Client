@@ -47,7 +47,9 @@ const deleteHandle =(id) =>{
   })
 }
   return (
-      selectClasses && <div className="overflow-x-auto ms-4 mt-8">
+      selectClasses && <div>
+          <h1 className='text-3xl font-semibold text-center my-5'>Student Dashboard-  Selected Class</h1>
+          <div className="overflow-x-auto ms-4 mt-8">
               <table className="table table-xs">
                 <thead className='table-head'>
                   <tr >
@@ -87,6 +89,7 @@ const deleteHandle =(id) =>{
                 </tbody> 
                 
               </table>
+          </div>
       </div>
     
   )

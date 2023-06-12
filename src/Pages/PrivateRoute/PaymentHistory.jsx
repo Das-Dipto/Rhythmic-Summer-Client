@@ -14,34 +14,38 @@ const PaymentHistory = () => {
       },
    })
   return (
-        enrolledClasses && <div className="overflow-x-auto ms-4 mt-8">
-              <table className="table table-xs">
-                <thead className='table-head'>
-                  <tr >
-                    <th></th>
-                    <th>Transaction ID</th> 
-                    <th>Class</th> 
-                    <th>Price</th> 
-                    <th>Payment Date</th> 
-                  </tr>
-                </thead> 
-                <tbody>
-                  {
-                  enrolledClasses?.map((item, index)=>(
-                      <tr className='hover' key={item._id}>
-                        <th>{index + 1}</th>
-                        <td>{item.transactionId}</td>
-                        <td>{item.class}</td>
-                        <td>$ {item.price}</td>
-                        <td>{item.date}</td>
-                      </tr>
-                    ))
-                  }
-                </tbody> 
-              </table>
-              <Link to='../enrolled'>
-                  <button className='btn btn-sm btn-outline btn-neutral ms-16 mt-5'>Back</button>
-              </Link>
+        enrolledClasses && 
+        <div>
+        <h1 className='text-3xl font-semibold text-center my-5'>Student Dashboard-  Payment History</h1>
+          <div className="overflow-x-auto ms-4 mt-8">
+                <table className="table table-xs">
+                  <thead className='table-head'>
+                    <tr >
+                      <th></th>
+                      <th>Transaction ID</th> 
+                      <th>Class</th> 
+                      <th>Price</th> 
+                      <th>Payment Date</th> 
+                    </tr>
+                  </thead> 
+                  <tbody>
+                    {
+                    enrolledClasses?.map((item, index)=>(
+                        <tr className='hover' key={item._id}>
+                          <th>{index + 1}</th>
+                          <td>{item.transactionId}</td>
+                          <td>{item.class}</td>
+                          <td>$ {item.price}</td>
+                          <td>{item.date}</td>
+                        </tr>
+                      ))
+                    }
+                  </tbody> 
+                </table>
+                <Link to='../enrolled'>
+                    <button className='btn btn-sm btn-outline btn-neutral ms-16 mt-5'>Back</button>
+                </Link>
+          </div>
         </div>
   )
 }
