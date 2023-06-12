@@ -6,8 +6,12 @@ import Swal from 'sweetalert2'
 import axios from 'axios';
 import {AiOutlineDollarCircle} from 'react-icons/ai'
 import {RiDeleteBin6Line} from 'react-icons/ri'
+import useTitle from '../../Hooks/useTitle'
 
 const SelectedClass = () => {
+
+  useTitle('Selected Class');
+
   const {user} = useContext(AuthContext)
   const { refetch, data: selectClasses = [] } = useQuery({
     queryKey: ['selectClasses'],

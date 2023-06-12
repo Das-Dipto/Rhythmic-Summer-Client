@@ -7,8 +7,12 @@ import Lottie from 'lottie-react'
 import Anim from '../../assets/LoginAnim.json'
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import Swal from 'sweetalert2'
+import useTitle from '../../Hooks/useTitle'
 
 const Login = () => {
+
+  useTitle('Login');
+
   const [errMessage, setErrMessage] = useState(``);
   const { signIn, user,  googleSignIn} = useContext(AuthContext);
   const navigate = useNavigate();

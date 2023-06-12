@@ -6,8 +6,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import {GrUpdate} from 'react-icons/gr'
 import { Link } from 'react-router-dom';
+import useTitle from '../../Hooks/useTitle'
+
 
 const MyClass = () => {
+
+  useTitle('My Class')
+
   const {user} = useContext(AuthContext)
   const { refetch, data: allClasses = [] } = useQuery({
     queryKey: ['allClasses'],

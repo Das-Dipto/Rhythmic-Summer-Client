@@ -3,9 +3,10 @@ import { useQuery } from '@tanstack/react-query'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios';
 import { AuthContext } from '../../ContextProvider/AuthProvider';
-
+import useTitle from '../../Hooks/useTitle';
 
 const EnrolledClass = () => {
+  useTitle('Enrolled')
   const {user} = useContext(AuthContext);
   const { refetch, data: enrolledClasses = [] } = useQuery({
     queryKey: ['enrolledClasses'],

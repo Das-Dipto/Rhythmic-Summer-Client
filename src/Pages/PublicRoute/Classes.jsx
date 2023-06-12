@@ -6,8 +6,12 @@ import { AuthContext } from '../../ContextProvider/AuthProvider'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
+import useTitle from '../../Hooks/useTitle'
 
 const Classes = () => {
+
+  useTitle('Classes')
+
   const [data, setData] = useState()
   const {user} = useContext(AuthContext)
   const navigate = useNavigate();

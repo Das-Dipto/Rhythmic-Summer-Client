@@ -8,10 +8,14 @@ import { useLocation } from "react-router";
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form";
+import useTitle from '../../Hooks/useTitle';
 
 
 
 const UpdateClassInfo = () => {
+
+    useTitle('Update ClassInfo')
+
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
 

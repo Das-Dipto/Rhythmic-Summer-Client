@@ -2,8 +2,12 @@ import React from 'react'
 import error from '../../assets/error.jpg'
 import { Link } from 'react-router-dom'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
+import useTitle from '../../Hooks/useTitle'
 
 const Error = () => {
+
+  useTitle('404')
+
   return (
     <div className='error-container'>
         <div className="error-content w-[80%] mx-auto flex justify-start items-end h-full">

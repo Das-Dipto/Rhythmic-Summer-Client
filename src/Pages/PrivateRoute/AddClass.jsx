@@ -4,8 +4,10 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { AuthContext } from '../../ContextProvider/AuthProvider';
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2'
+import useTitle from '../../Hooks/useTitle';
 
 const AddClass = () => {
+  useTitle('Add Class');
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const {user} = useContext(AuthContext);
   const navigate = useNavigate();

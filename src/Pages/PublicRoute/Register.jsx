@@ -6,9 +6,12 @@ import Anim from '../../assets/RegisterAnim.json'
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../ContextProvider/AuthProvider";
 import Swal from 'sweetalert2'
-
+import useTitle from '../../Hooks/useTitle'
 
 const Register = () => {
+
+  useTitle('Register');
+
   const [errMessage, setErrMessage] = useState(``);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [isChecked, setIsChecked] = useState(false);

@@ -1,8 +1,12 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios';
+import useTitle from '../../Hooks/useTitle'
 
 const Instructors = () => {
+
+    useTitle('Instructors')
+
     const { refetch, data: instructors = [] } = useQuery({
     queryKey: ['instructors'],
     queryFn: async () => {

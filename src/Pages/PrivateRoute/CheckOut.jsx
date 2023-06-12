@@ -4,8 +4,10 @@ import { AuthContext } from '../../ContextProvider/AuthProvider'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import useTitle from '../../Hooks/useTitle';
 
 const CheckOut = ({item}) => {
+    useTitle('CheckOut')
     const [Data, setData] = useState();
     const navigate = useNavigate();
     const stripe = useStripe();

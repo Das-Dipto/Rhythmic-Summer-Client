@@ -4,8 +4,11 @@ import { AuthContext } from '../../ContextProvider/AuthProvider'
 import { Navigate, useLocation } from "react-router";
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import useTitle from '../../Hooks/useTitle';
 
 const ManageUser = () => {
+
+  useTitle('Manage User')
 
   const {user} = useContext(AuthContext)
   const { refetch, data: allUsers = [] } = useQuery({
