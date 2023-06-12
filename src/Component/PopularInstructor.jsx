@@ -16,9 +16,9 @@ const PopularInstructor = () => {
           <h1 className='mt-8 text-center text-4xl font-bold'>Popular Instructors</h1>
           <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">{
              popularInstructor.slice(0,6)?.map((item, index)=>(
-          <div key={item._id} className="card mt-10 md:mt-16 bg-base-10 ">
-             <figure><img title={item.name.toUpperCase()} className='w-full md:h-[260px]' src={item.photo} alt={item.name} /></figure>
-          </div>
+            <div key={item._id} className="card mt-10 md:mt-16 bg-base-10 ">
+                <figure><img title={item.name.toUpperCase()} className='w-full md:h-[260px]' src={item.photo} alt={item.name} /></figure>
+            </div>
            ))
          }
          </div>
