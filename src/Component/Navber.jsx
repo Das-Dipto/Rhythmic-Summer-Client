@@ -43,10 +43,10 @@ const Navber = () => {
             <NavLink style={navLinkStyles} to='/instructors'>Instructors</NavLink>
           </li>
        
-          { user && <li>
+          <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
           </li>
-          }
+          
       
          {user && <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/dashboard'>Dashboard</NavLink>
@@ -76,10 +76,10 @@ const Navber = () => {
         <li>
           <NavLink className='font-bold' style={navLinkStyles} to='/instructors'>Instructor</NavLink>
         </li>
-       { user && <li>
+        <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
-          </li>
-       }
+        </li>
+       
       
       {user && <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/dashboard'>Dashboard</NavLink>
