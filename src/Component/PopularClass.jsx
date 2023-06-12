@@ -19,7 +19,7 @@ const PopularClass = () => {
           <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">{
              popularClass?.map((item, index)=>(
           <div key={item._id} className="card mt-10 md:mt-16 bg-base-10 ">
-             <figure><img className='w-full md:h-[200px]' src={item.picture} alt={item.instructorName} /></figure>
+             <figure><img title={`${item.className.toUpperCase()} class by ${item.instructorName.toUpperCase()} `} className='w-full md:h-[200px]' src={item.picture} alt={item.instructorName} /></figure>
           </div>
            ))
         }

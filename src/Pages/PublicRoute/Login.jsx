@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 
 const Login = () => {
   const [errMessage, setErrMessage] = useState(``);
-  const { signIn, user} = useContext(AuthContext);
+  const { signIn, user,  googleSignIn} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,6 +22,19 @@ const Login = () => {
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
       };
+
+      // function for signing with Google Account
+  const googleLogin = () =>{
+    googleSignIn()
+    .then((result)=>{
+       const loggedInUser =result.user;
+       console.log(loggedInUser);
+       navigate(from, { replace: true })
+    })
+    .catch((error)=>{
+      console.log(error.message);
+    })
+}
 
       const onSubmit = (data) => {
         console.log(data.email.toLowerCase(), data.password.toLowerCase())
@@ -113,7 +126,7 @@ const Login = () => {
                         </Button>
                     </form>
                     <p className='mt-6 flex justify-center'>Don't have an account?<NavLink to="/register" className='text-sky-500 font-semibold ms-1 underline'> Create an account</NavLink></p>
-                    <button className='hover:bg-sky-500 ease-in-out duration-300 my-5 mx-auto flex justify-between items-center rounded-full p-2 font-semibold border border-gray-300'>
+                    <button onClick={googleLogin} className='hover:bg-sky-500 ease-in-out duration-300 my-5 mx-auto flex justify-between items-center rounded-full p-2 font-semibold border border-gray-300'>
                         <FcGoogle style={{fontSize:"25px"}}/>
                         <span></span>
                     </button>

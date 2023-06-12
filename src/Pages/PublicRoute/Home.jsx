@@ -5,13 +5,14 @@ import PopularInstructor from '../../Component/PopularInstructor'
 import Partner from '../../Component/Partner'
 
 const Home = () => {
+ 
   return (
-    <>
+    <div>
      <BannerSlider/>
      <PopularClass/>
      <PopularInstructor/>
      <Partner/>
-    </>
+    </div>
   )
 }
 

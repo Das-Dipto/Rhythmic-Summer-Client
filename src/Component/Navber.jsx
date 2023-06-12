@@ -5,13 +5,17 @@ import { NavLink, Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../ContextProvider/AuthProvider'
 
-const Navber = () => {
+const Navber = (props) => {
     const navLinkStyles = ({isActive}) => {
         return{
            color: isActive ? '#fff' : '#73BBC9',
         //    backgroundColor : isActive ? 'black' : 'black'
         }
       }
+    
+    const handleChange = (event) =>{
+      props.toggle();
+    }
 
       const {user, logOut} = useContext(AuthContext);
 
@@ -47,10 +51,12 @@ const Navber = () => {
             <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
           </li>
           
+       
       
          {user && <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/dashboard'>Dashboard</NavLink>
           </li> }
+
 
           {/* <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
@@ -80,7 +86,8 @@ const Navber = () => {
             <NavLink className='font-bold' style={navLinkStyles} to='/classes'>Classes</NavLink>
         </li>
        
-      
+
+
       {user && <li>
             <NavLink className='font-bold' style={navLinkStyles} to='/dashboard'>Dashboard</NavLink>
       </li> }
@@ -96,6 +103,7 @@ const Navber = () => {
     </ul>
   </div>
   <div className="navbar-end">
+   <input onChange={handleChange} type="checkbox" className="toggle me-3"/>
     {
             user ? <>
               <img className='me-6 user-img' title={user.displayName || user.reloadUserInfo.screenName} src={user.photoURL} alt={user.displayName} /> 
