@@ -14,7 +14,7 @@ const Classes = () => {
   const { refetch, data: approvedClasses = [] } = useQuery({
     queryKey: ['approvedClasses'],
     queryFn: async () => {
-        const res = await axios.get(`http://localhost:5000/getApprovedClass`)
+        const res = await axios.get(` https://server-a12.vercel.app/getApprovedClass`)
         return res.data;
     },
 })
@@ -22,7 +22,7 @@ const Classes = () => {
 const { data: getRole= [] } = useQuery({
   queryKey: ['role', user?.email],
   queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/getRole?email=${user?.email}`)
+      const res = await axios.get(` https://server-a12.vercel.app/getRole?email=${user?.email}`)
       return res.data;
   },
 })
@@ -39,7 +39,7 @@ const handleSelect =(item) =>{
           price,
           addedBy:user?.email
         }
-        fetch('http://localhost:5000/selectedClasses', {
+        fetch(' https://server-a12.vercel.app/selectedClasses', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'

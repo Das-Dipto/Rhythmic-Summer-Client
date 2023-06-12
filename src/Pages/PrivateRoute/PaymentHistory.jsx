@@ -9,7 +9,7 @@ const PaymentHistory = () => {
     const { refetch, data: enrolledClasses = [] } = useQuery({
       queryKey: ['enrolledClasses'],
       queryFn: async () => {
-          const res = await axios.get(`http://localhost:5000/enrolledClasses?studentEmail=${user?.email}`)
+          const res = await axios.get(` https://server-a12.vercel.app/enrolledClasses?studentEmail=${user?.email}`)
           return res.data;
       },
    })

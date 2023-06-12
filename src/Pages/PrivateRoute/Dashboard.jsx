@@ -11,7 +11,7 @@ const Dashboard = () => {
   const { refetch, data: allUsers = [] } = useQuery({
     queryKey: ['users', user?.email],
     queryFn: async () => {
-        const res = await axios.get(`http://localhost:5000/getAllUsers`)
+        const res = await axios.get(` https://server-a12.vercel.app/getAllUsers`)
         return res.data;
     },
 })

@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 
 
 const Register = () => {
+  const [errMessage, setErrMessage] = useState(``);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [isChecked, setIsChecked] = useState(false);
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -19,11 +20,16 @@ const Register = () => {
   };
 
   const onSubmit = (data) => {
+    if(data.password1.toLowerCase() != data.password2.toLowerCase()){
+      setErrMessage(`Password is not matching with confirming password!!! Please Try again.`)
+      return
+    }
     console.log(data.email.toLowerCase(), data.password1.toLowerCase())
     createUser(data.email.toLowerCase(), data.password1.toLowerCase())
     .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setErrMessage(``);
 
         updateUserProfile(data.name.toLowerCase(), data.photoURL)
             .then(() => {
@@ -34,7 +40,7 @@ const Register = () => {
                   role:'student'
                  }
 
-                fetch('http://localhost:5000/allUsers', {
+                fetch(' https://server-a12.vercel.app/allUsers', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -176,7 +182,7 @@ const Register = () => {
                                   Show Password
                                 </Label>
                          </div>
-    
+                         <p className='text-red-400 font-semibold'>{errMessage}</p>
                 </div>
                    <Button className='mt-5 bg-sky-500'  type="submit">
                        Create an account

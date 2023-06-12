@@ -13,7 +13,7 @@ const Payment = () => {
   const params = useParams();
   // console.log(params);
   useEffect(()=>{
-    fetch(`http://localhost:5000/payClass/${params.id}`)
+    fetch(` https://server-a12.vercel.app/payClass/${params.id}`)
     .then((res)=>res.json())
     .then((data)=> setItem(data))
     .catch((err)=> console.log(err.message))

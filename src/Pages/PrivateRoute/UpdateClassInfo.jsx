@@ -37,7 +37,7 @@ const UpdateClassInfo = () => {
         /* Read more about isConfirmed, isDenied below */
        
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/updateClass/${params.id}`,{
+          fetch(` https://server-a12.vercel.app/updateClass/${params.id}`,{
             method:'PUT',
             headers:{
               'content-type' : 'application/json'
@@ -72,7 +72,7 @@ const UpdateClassInfo = () => {
     const { refetch, data: requiredUsers = [] } = useQuery({
       queryKey: ['updateClass'],
       queryFn: async () => {
-          const res = await axios.get(`http://localhost:5000/updateClassInfo/${params.id}`)
+          const res = await axios.get(` https://server-a12.vercel.app/updateClassInfo/${params.id}`)
           return res.data;
       },
   })

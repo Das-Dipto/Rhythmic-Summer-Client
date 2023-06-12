@@ -6,7 +6,7 @@ const Instructors = () => {
     const { refetch, data: instructors = [] } = useQuery({
     queryKey: ['instructors'],
     queryFn: async () => {
-        const res = await axios.get(`http://localhost:5000/getInstructors`)
+        const res = await axios.get(` https://server-a12.vercel.app/getInstructors`)
         return res.data;
     },
   })

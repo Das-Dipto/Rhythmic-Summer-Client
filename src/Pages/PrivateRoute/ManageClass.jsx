@@ -11,7 +11,7 @@ const ManageClass = () => {
   const { refetch, data: allClass = [] } = useQuery({
     queryKey: ['classes'],
     queryFn: async () => {
-        const res = await axios.get(`http://localhost:5000/allClasses`)
+        const res = await axios.get(` https://server-a12.vercel.app/allClasses`)
         return res.data;
     },
 })
@@ -39,7 +39,7 @@ const updateStatus = (itemID, status, feedback) =>{
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch(`http://localhost:5000/updateClassStatus/${itemID}`,{
+      fetch(` https://server-a12.vercel.app/updateClassStatus/${itemID}`,{
         method:'PUT',
         headers:{
           'content-type' : 'application/json'

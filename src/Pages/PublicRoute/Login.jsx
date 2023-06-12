@@ -9,7 +9,7 @@ import { AuthContext } from '../../ContextProvider/AuthProvider';
 import Swal from 'sweetalert2'
 
 const Login = () => {
- 
+  const [errMessage, setErrMessage] = useState(``);
   const { signIn, user} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,6 +28,7 @@ const Login = () => {
         signIn(data.email.toLowerCase(), data.password.toLowerCase())
         .then(result => {
             const user = result.user;
+            setErrMessage(``);
             console.log(user);
             Swal.fire({
                 title: `Welcome ${user?.displayName.toUpperCase() || user?.reloadUserInfo.screenName.toUpperCase()}`,
@@ -42,7 +43,9 @@ const Login = () => {
             setTimeout(()=>{
               navigate(from, { replace: true });
             },1000)
-           
+        })
+        .catch((err)=>{
+           setErrMessage('Wrong email or password!!! Try Again ')
         })
 
       }
@@ -101,8 +104,9 @@ const Login = () => {
                                 </Label>
                                 </div>
                               </div>
+                              <p className='text-red-600 font-semibold'>{errMessage}</p>
+                      
                                  
-                                  
                      </div>
                         <Button className='mt-5 bg-sky-500' type="submit">
                             Login

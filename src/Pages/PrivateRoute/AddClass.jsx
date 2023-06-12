@@ -15,99 +15,63 @@ const AddClass = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
   const onSubmit = (data) => {
-    // const formData = new FormData();
+    const formData = new FormData();
  
-    // formData.append('image', data.file[0])
+    formData.append('image', data.file[0])
 
-    // fetch(img_hosting_url, {
-    //     method: 'POST',
-    //     body: formData
-    // })
-    // .then(res => res.json())
-    // .then(imgResponse => {
-    //     if(imgResponse.success){
-    //         const imgURL = imgResponse.data.display_url;
-    //         const {instructorName, className, instructorEmail, price, seats} = data;
-    //         const newItem = {
-    //           instructorName,
-    //           className, 
-    //           instructorEmail,
-    //           price: parseFloat(price), 
-    //           seats: parseInt(seats), 
-    //           picture:imgURL, 
-    //           status:'Pending',
-    //           feedback: '',
-    //           enrollment: parseInt(0)
-    //         }
-    //         console.log(newItem)
-    //               fetch('http://localhost:5000/addClasses', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify(newItem)
-    //               })
-    //              .then(res => res.json())
-    //              .then(data => {
-    //                 if (data.insertedId) {
-    //                     // reset();
-    //                     Swal.fire({
-    //                       position: 'top-end',
-    //                       icon: 'success',
-    //                       title: 'Successfully created class.',
-    //                       showConfirmButton: false,
-    //                       timer: 1500
-    //                     });
-    //                     setTimeout(()=>{
-    //                       navigate('/InstructorDash/myClass');
-    //                     },1600)
+    fetch(img_hosting_url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(imgResponse => {
+        if(imgResponse.success){
+            const imgURL = imgResponse.data.display_url;
+            const {instructorName, className, instructorEmail, price, seats} = data;
+            const newItem = {
+              instructorName,
+              className, 
+              instructorEmail,
+              price: parseFloat(price), 
+              seats: parseInt(seats), 
+              picture:imgURL, 
+              status:'Pending',
+              feedback: '',
+              enrollment: parseInt(0)
+            }
+            console.log(newItem)
+                  fetch(' https://server-a12.vercel.app/addClasses', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(newItem)
+                  })
+                 .then(res => res.json())
+                 .then(data => {
+                    if (data.insertedId) {
+                        // reset();
+                        Swal.fire({
+                          position: 'top-end',
+                          icon: 'success',
+                          title: 'Successfully created class.',
+                          showConfirmButton: false,
+                          timer: 1500
+                        });
+                        setTimeout(()=>{
+                          navigate('/InstructorDash/myClass');
+                        },1600)
                             
-    //                     }
-    //                 })
-    //               .catch(error => {console.log(error)})
-    //       }
-    //       else{
+                        }
+                    })
+                  .catch(error => {console.log(error)})
+          }
+          else{
           
-    //       }
-    //   })
+          }
+      })
 
-    const {instructorName, className, instructorEmail, price, seats} = data;
-    const newItem = {
-      instructorName,
-      className, 
-      instructorEmail,
-      price: parseFloat(price), 
-      seats: parseInt(seats), 
-      status:'Pending',
-      feedback: '',
-      enrollment: parseInt(0)
-    }
-    console.log(newItem)
-          fetch('http://localhost:5000/addClasses', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newItem)
-          })
-         .then(res => res.json())
-         .then(data => {
-            if (data.insertedId) {
-                // reset();
-                Swal.fire({
-                  position: 'top-end',
-                  icon: 'success',
-                  title: 'Successfully created class.',
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-                setTimeout(()=>{
-                  navigate('/InstructorDash/myClass');
-                },1600)
-                    
-                }
-            })
-          .catch(error => {console.log(error)})
+  
   }
 
 

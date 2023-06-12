@@ -21,7 +21,7 @@ const CheckOut = ({item}) => {
 
 
     const ext =(dt) =>{
-      fetch(`http://localhost:5000/updateSeats?email=${dt?.instructorEmail}&className=${dt?.className}`)
+      fetch(` https://server-a12.vercel.app/updateSeats?email=${dt?.instructorEmail}&className=${dt?.className}`)
       .then((res)=>res.json())
       .then((data)=>{
          setData(data)
@@ -35,7 +35,7 @@ const CheckOut = ({item}) => {
          } 
          console.log(updatedItem)
 
-         fetch(`http://localhost:5000/updatedOnly/${data._id}`,{
+         fetch(` https://server-a12.vercel.app/updatedOnly/${data._id}`,{
            method:'PUT',
            headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const CheckOut = ({item}) => {
    
     useEffect(() => {
         if (price > 0) {
-          fetch('http://localhost:5000/create-payment-intent', {
+          fetch(' https://server-a12.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ const CheckOut = ({item}) => {
               date: new Date(),
             };
       
-            fetch('http://localhost:5000/payments', {
+            fetch(' https://server-a12.vercel.app/payments', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -159,7 +159,7 @@ const CheckOut = ({item}) => {
                     console.log('successful')
                     notify();
                     ext(item)
-                    fetch(`http://localhost:5000/deleteSelectClass/${item._id}`,{
+                    fetch(` https://server-a12.vercel.app/deleteSelectClass/${item._id}`,{
                        method:"DELETE"
                     })
                     .then((res)=>res.json())

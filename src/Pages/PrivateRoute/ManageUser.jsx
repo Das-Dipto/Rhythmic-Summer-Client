@@ -11,7 +11,7 @@ const ManageUser = () => {
   const { refetch, data: allUsers = [] } = useQuery({
     queryKey: ['updateUsers'],
     queryFn: async () => {
-        const res = await axios.get(`http://localhost:5000/getAllUsers`)
+        const res = await axios.get(` https://server-a12.vercel.app/getAllUsers`)
         return res.data;
     },
 })
@@ -42,7 +42,7 @@ const callSwal = (userID, userRole) => {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      fetch(`http://localhost:5000/updateUserRole/${userID}`,{
+      fetch(` https://server-a12.vercel.app/updateUserRole/${userID}`,{
         method:'PUT',
         headers:{
           'content-type' : 'application/json'
