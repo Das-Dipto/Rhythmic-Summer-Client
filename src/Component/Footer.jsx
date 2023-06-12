@@ -10,7 +10,7 @@ import { ImOffice } from 'react-icons/im'
 
 const Footer = () => {
   return (
-    <footer aria-label="Site Footer" className="bg-gray-900">
+    <footer aria-label="Site Footer" className="bg-gray-900 mt-5">
       <div
         className="max-w-screen-xl px-4 py-16 mx-auto space-y-8 sm:px-6 lg:space-y-16 lg:px-8"
       >
@@ -24,7 +24,10 @@ const Footer = () => {
             </div>
 
             <p className="max-w-xs mt-4 text-gray-400">
-                Rev up your passion for cars and ignite your collection with our top-tier toys! Explore our online store for car enthusiasts and collectors to fuel your joyride.
+            Unlock Your Musical Potential This Summer!
+Join Our Melody-Filled Summer Camp for School Students:
+Discover, Learn, and Master Instruments with Passionate Instructors.
+Ignite Your Musical Journey Today!
             </p>
 
             <ul className="flex gap-6 mt-8">

@@ -11,36 +11,26 @@ import TamaLogo from '../assets/TamaLogo.png'
 
 const Partner = () => {
   return (
-    <div className='supplier-container mt-32 '>
+    <div className='supplier-container my-32 '>
     <h1 className='mt-20 text-2xl md:text-5xl font-bold text-center'>Our<span className='text-teal-300'> Partners</span></h1>
     <div className="logos">
       <div className="logos-slide">
-        <img src={IbanazLogo} alt='fordLogo' />
-        <img src={GibsonLogo} alt='hasbroLogo' />
-        <img src={EspLogo} alt='lamboLogo' />
-        <img src={JacksonLogo} alt='macyLogo' />
-        <img src={LtdLogo} alt='manLogo' />
-        <img src={PearlLogo} alt='mattelLogo' />
-        <img src={TamaLogo} alt='toyotaLogo' />
-        <img src={IbanazLogo} alt='fordLogo' />
-        <img src={GibsonLogo} alt='hasbroLogo' />
-        <img src={EspLogo} alt='lamboLogo' />
-        <img src={JacksonLogo} alt='macyLogo' />
-        <img src={LtdLogo} alt='manLogo' />
-        <img src={PearlLogo} alt='mattelLogo' />
-        <img src={TamaLogo} alt='toyotaLogo' />
+        <img src={IbanazLogo} alt='IbanazLogo' />
+        <img src={GibsonLogo} alt='GibsonLogo' />
+        <img src={EspLogo} alt='EspLogo' />
+        <img src={JacksonLogo} alt='JacksonLogo' />
+        <img src={LtdLogo} alt='LtdLogo' />
+        <img src={PearlLogo} alt='PearlLogo' />
+        <img src={TamaLogo} alt='TamaLogo' />
+        <img src={IbanazLogo} alt='IbanazLogo'/>
+        <img src={GibsonLogo} alt='GibsonLogo' />
+        <img src={EspLogo} alt='EspLogo' />
+        <img src={JacksonLogo} alt='JacksonLogo' />
+        <img src={LtdLogo} alt='LtdLogo' />
+        <img src={PearlLogo} alt='PearlLogo' />
+        <img src={TamaLogo} alt='TamaLogo' />
       </div>
-
-      {/* <div className="logos-slide">
-         <img src={IbanazLogo} alt='fordLogo' />
-        <img src={GibsonLogo} alt='hasbroLogo' />
-        <img src={EspLogo} alt='lamboLogo' />
-        <img src={JacksonLogo} alt='macyLogo' />
-        <img src={LtdLogo} alt='manLogo' />
-        <img src={PearlLogo} alt='mattelLogo' />
-        <img src={TamaLogo} alt='toyotaLogo' />
-      </div> */}
-    </div>
+     </div>
     </div>
   )
 }

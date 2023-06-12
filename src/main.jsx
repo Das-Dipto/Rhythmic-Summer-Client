@@ -26,35 +26,35 @@ import ManageUser from './Pages/PrivateRoute/ManageUser.jsx';
 import UpdateClassInfo from './Pages/PrivateRoute/UpdateClassInfo.jsx';
 import Payment from './Pages/PrivateRoute/Payment.jsx';
 import PaymentHistory from './Pages/PrivateRoute/PaymentHistory.jsx';
-
+import { Fade } from 'react-awesome-reveal';
 
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
     path:"/",
-    element:<Root></Root>,
+    element:<Fade><Root></Root></Fade>,
     errorElement:<Error></Error>,
     children:[
       {
         path:"/",
-        element:<Home></Home>
+        element: <Fade> <Home></Home> </Fade> 
       },
       {
         path:"home",
-        element:<Home></Home>
+        element:<Fade> <Home></Home> </Fade>
       },
       {
         path:"instructors",
-        element: <Instructors></Instructors>
+        element: <Fade> <Instructors></Instructors> </Fade> 
       },
       {
         path:"classes",
-        element: <Classes></Classes>
+        element: <Fade> <Classes></Classes> </Fade> 
       },
       {
         path:"dashboard",
-        element: <ProtectedRoute><Dashboard></Dashboard></ProtectedRoute> 
+        element: <ProtectedRoute> <Fade> <Dashboard></Dashboard> </Fade> </ProtectedRoute> 
       },
       {
         path:"login",

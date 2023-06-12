@@ -71,7 +71,7 @@ const Register = () => {
 
   return (
     <>
-      <div className='w-full flex justify-around items-center flex-wrap'>
+      <div className='w-full flex justify-around items-center flex-wrap my-14'>
         <div className="lottie-anim mt-0 md:mt-28 md:me-15">
               <div style={{maxWidth:600}}>
                   <Lottie animationData={Anim} />
